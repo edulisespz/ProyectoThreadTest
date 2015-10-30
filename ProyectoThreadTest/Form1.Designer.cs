@@ -152,14 +152,14 @@
             this.textBox6.Location = new System.Drawing.Point(12, 312);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(92, 20);
-            this.textBox6.TabIndex = 16;
+            this.textBox6.TabIndex = 12;
             // 
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(110, 312);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(92, 20);
-            this.textBox7.TabIndex = 15;
+            this.textBox7.TabIndex = 13;
             // 
             // textBox8
             // 
@@ -173,14 +173,14 @@
             this.textBox9.Location = new System.Drawing.Point(306, 312);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(92, 20);
-            this.textBox9.TabIndex = 13;
+            this.textBox9.TabIndex = 15;
             // 
             // textBox10
             // 
             this.textBox10.Location = new System.Drawing.Point(404, 312);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(92, 20);
-            this.textBox10.TabIndex = 12;
+            this.textBox10.TabIndex = 16;
             // 
             // labelDeadPrograms
             // 
