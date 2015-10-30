@@ -19,11 +19,13 @@ namespace ProyectoThreadTest
         public int LabelCount = -1; // variable principal del procesador
         int NumOfProces=10;
 
-        bool ResetFlag=true;
+        bool ResetFlag=false;
 
         bool SRTbussy = false, PRIbussy = false;
 
-        int count20=0;
+        int count20 = 0;
+
+        int DeadPrograms = 0;
 
 
         Thread newThread;
@@ -121,14 +123,33 @@ namespace ProyectoThreadTest
 
             int PosShortestTime;
 
+            int PosPriority;
+
             
             
-            textBox1.Text = LabelCount.ToString();
+            //textBox1.Text = LabelCount.ToString();
+
+            count20++; //counter every 20 steps
+            if (count20 == 20)
+            {
+                ResetFlag = true;
+            }
+
+            if (List_Proceso.Count == 0)
+            {
+                ResetFlag = true;
+            }
 
             if(ResetFlag){ // se resetea a los 20
                 ResetFlag = false;
 
-                count20=0;
+                DeadPrograms += List_Proceso.Count;
+
+                List_Proceso = new List<Proceso>();
+
+                llenarLista();
+
+                count20 = 0;
             }
 
             ///// First Procesor Srtproces  ////////
@@ -166,6 +187,41 @@ namespace ProyectoThreadTest
 
             /// End First Procesor Srtproces /////
             
+            /// Second Procesor Priority ///
+
+            if (PRIbussy == false)//nuevo proceso "priority proceser"
+            {
+                PosPriority = FindPriority();
+
+
+                PrirityProces = new Proceso(List_Proceso.ElementAt(PosPriority));
+
+                List_Proceso.RemoveAt(PosPriority);
+
+                textBoxPriority_Execution.Text = Srtproces.TiempoRestante.ToString();
+                PRIbussy = true;
+
+
+
+            }
+            else//the porcess continues
+            {
+                textBoxPriority_Execution.Text = "Tiempo restante " + PrirityProces.TiempoRestante.ToString() + Environment.NewLine +
+                                            "Tipo_Moneda " + PrirityProces.TipoMoneda + Environment.NewLine +
+                                            "idMoneda" + PrirityProces.IDproces.ToString();
+
+
+                PrirityProces.TiempoRestante--;
+
+                if (PrirityProces.TiempoRestante == 0)
+                {
+                    PRIbussy = false;
+                }
+            }
+
+
+
+            ////// end second procesor
 
 
 
@@ -215,6 +271,8 @@ namespace ProyectoThreadTest
                 textBox10.Text = List_Proceso.ElementAt(9).TipoMoneda;
             else textBox10.Text = "Vacia";
 
+            labelDeadPrograms.Text = "Procesos Muertos "+ DeadPrograms.ToString();
+
             //// end Drawing   /////
 
         }
@@ -240,7 +298,7 @@ namespace ProyectoThreadTest
                 temp = new Proceso();
 
                 temp.IDproces = i;
-                temp.TiempoServico = rand.Next(1, 5);
+                temp.TiempoServico = rand.Next(5, 10); // This change the Service time
                 temp.prioridad = rand.Next(0, 3);
                 temp.TiempoRestante = temp.TiempoServico;
 
@@ -330,6 +388,44 @@ namespace ProyectoThreadTest
 
                 return i-1;
         }
+
+
+        private int FindPriority()
+        {
+            /**return the interger position of the List_Proceso*/
+            int i = -1, result;
+            int prioridad = 0;
+            bool foundit = false;
+
+            while (foundit == false)
+            {
+
+                for (i = 0; i < List_Proceso.Count; i++)
+                {
+                    if (foundit)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if (prioridad == List_Proceso.ElementAt(i).prioridad)
+                        {
+                            foundit = true;
+                        }
+                    }
+
+                }//end For
+
+                prioridad++;
+            }
+
+            return i - 1;
+        }
+
+
+
+
+
 
         
         

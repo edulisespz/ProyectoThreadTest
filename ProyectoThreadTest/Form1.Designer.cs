@@ -45,6 +45,7 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
+            this.labelDeadPrograms = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelClock
@@ -181,11 +182,21 @@
             this.textBox10.Size = new System.Drawing.Size(92, 20);
             this.textBox10.TabIndex = 12;
             // 
+            // labelDeadPrograms
+            // 
+            this.labelDeadPrograms.AutoSize = true;
+            this.labelDeadPrograms.Location = new System.Drawing.Point(33, 366);
+            this.labelDeadPrograms.Name = "labelDeadPrograms";
+            this.labelDeadPrograms.Size = new System.Drawing.Size(92, 13);
+            this.labelDeadPrograms.TabIndex = 17;
+            this.labelDeadPrograms.Text = "Procesos Muertos";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(548, 407);
+            this.Controls.Add(this.labelDeadPrograms);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox8);
@@ -232,6 +243,7 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label labelDeadPrograms;
     }
 }
 
