@@ -46,6 +46,13 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.labelDeadPrograms = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnMoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTRes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnState = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelClock
@@ -191,11 +198,57 @@
             this.labelDeadPrograms.TabIndex = 17;
             this.labelDeadPrograms.Text = "Procesos Muertos";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnID,
+            this.ColumnDuration,
+            this.ColumnMoneda,
+            this.ColumnTRes,
+            this.ColumnState});
+            this.dataGridView1.Location = new System.Drawing.Point(230, 353);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(460, 360);
+            this.dataGridView1.TabIndex = 18;
+            this.dataGridView1.Visible = false;
+            // 
+            // ColumnID
+            // 
+            this.ColumnID.HeaderText = "ID";
+            this.ColumnID.Name = "ColumnID";
+            this.ColumnID.ReadOnly = true;
+            // 
+            // ColumnDuration
+            // 
+            this.ColumnDuration.HeaderText = "Duracion";
+            this.ColumnDuration.Name = "ColumnDuration";
+            this.ColumnDuration.ReadOnly = true;
+            // 
+            // ColumnMoneda
+            // 
+            this.ColumnMoneda.HeaderText = "Moneda";
+            this.ColumnMoneda.Name = "ColumnMoneda";
+            this.ColumnMoneda.ReadOnly = true;
+            // 
+            // ColumnTRes
+            // 
+            this.ColumnTRes.HeaderText = "T.Respo";
+            this.ColumnTRes.Name = "ColumnTRes";
+            this.ColumnTRes.ReadOnly = true;
+            // 
+            // ColumnState
+            // 
+            this.ColumnState.HeaderText = "Procesador";
+            this.ColumnState.Name = "ColumnState";
+            this.ColumnState.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 407);
+            this.ClientSize = new System.Drawing.Size(555, 397);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.labelDeadPrograms);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox7);
@@ -219,6 +272,7 @@
             this.Text = "Thread Test";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,6 +298,12 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label labelDeadPrograms;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDuration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMoneda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTRes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnState;
     }
 }
 

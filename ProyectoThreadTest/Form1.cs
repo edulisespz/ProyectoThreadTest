@@ -49,6 +49,8 @@ namespace ProyectoThreadTest
 
            List_Proceso = new List<Proceso>();
            llenarLista();
+
+           
         }
 
         
@@ -92,7 +94,21 @@ namespace ProyectoThreadTest
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //newThread.Suspend();
+            dataGridView1.Location = new Point(52, 25);
+            dataGridView1.Visible = true;
+
+            
+            try
+            {
+
+
+                newThread.Interrupt();
+                newThread.Abort();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -181,13 +197,23 @@ namespace ProyectoThreadTest
                 if (Srtproces.TiempoRestante == 0)
                 {
                     SRTbussy = false;
+
+                    dataGridView1.Rows.Add(
+                        Srtproces.IDproces,
+                        Srtproces.TiempoServico,
+                        Srtproces.TipoMoneda,
+                        count20.ToString(),
+                        "SRT"
+                        );
                 }
             }
 
 
             /// End First Procesor Srtproces /////
-            
+            /// 
+            //------------------------------------------------------------------------------------------------
             /// Second Procesor Priority ///
+            /// 
 
             if (PRIbussy == false)//nuevo proceso "priority proceser"
             {
@@ -216,6 +242,14 @@ namespace ProyectoThreadTest
                 if (PrirityProces.TiempoRestante == 0)
                 {
                     PRIbussy = false;
+
+                    dataGridView1.Rows.Add(
+                        PrirityProces.IDproces,
+                        PrirityProces.TiempoServico,
+                        PrirityProces.TipoMoneda,
+                        count20.ToString(),
+                        "Priority"
+                        );
                 }
             }
 
