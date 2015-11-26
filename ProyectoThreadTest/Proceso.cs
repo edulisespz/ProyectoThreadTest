@@ -15,6 +15,8 @@ namespace ProyectoThreadTest
         public int prioridad;
         public int TiempoServico;
         public string TipoMoneda;
+        public int Tiempo_de_esp;
+        public int Timepo_esp_MAX;
 
         public Proceso()
         {
@@ -28,6 +30,8 @@ namespace ProyectoThreadTest
             this.prioridad = OBJ.prioridad;
             this.TiempoServico = OBJ.TiempoServico;
             this.TipoMoneda = OBJ.TipoMoneda;
+            this.Tiempo_de_esp = OBJ.Tiempo_de_esp;
+            this.Timepo_esp_MAX = OBJ.Timepo_esp_MAX;
         }
 
     }

@@ -27,6 +27,8 @@ namespace ProyectoThreadTest
 
         int DeadPrograms = 0;
 
+        int id=0;// serial identification
+
 
         Thread newThread;
 
@@ -94,8 +96,9 @@ namespace ProyectoThreadTest
 
         private void button2_Click(object sender, EventArgs e)
         {
-            dataGridView1.Location = new Point(52, 25);
+            /*dataGridView1.Location = new Point(156, 25);
             dataGridView1.Visible = true;
+             */
 
             
             try
@@ -138,10 +141,10 @@ namespace ProyectoThreadTest
             
 
             int PosShortestTime;
-
+            
             int PosPriority;
 
-            
+            NumOfProces += (List_Proceso.Count * 1);
             
             //textBox1.Text = LabelCount.ToString();
 
@@ -159,10 +162,12 @@ namespace ProyectoThreadTest
             if(ResetFlag){ // se resetea a los 20
                 ResetFlag = false;
 
-                DeadPrograms += List_Proceso.Count;
+                Random _rand = new Random();
 
-                List_Proceso = new List<Proceso>();
+                DeadPrograms += _rand.Next(0, 50);
 
+                //List_Proceso = new List<Proceso>();
+                NumOfProces = 10;
                 llenarLista();
 
                 count20 = 0;
@@ -193,6 +198,7 @@ namespace ProyectoThreadTest
                                             
 
                 Srtproces.TiempoRestante--;
+                
 
                 if (Srtproces.TiempoRestante == 0)
                 {
@@ -206,6 +212,7 @@ namespace ProyectoThreadTest
                         "SRT"
                         );
                 }
+                
             }
 
 
@@ -259,15 +266,41 @@ namespace ProyectoThreadTest
 
 
 
-            
+            /// wait procesor, checks starving process
+            /// 
+
+            for (int i = 0; i < List_Proceso.Count; i++)
+            {
+                List_Proceso.ElementAt(i).Tiempo_de_esp++;
+
+                if (List_Proceso.ElementAt(i).Tiempo_de_esp == List_Proceso.ElementAt(i).Timepo_esp_MAX)
+                {
+                    dataGridView1.Rows.Add(
+                        List_Proceso.ElementAt(i).IDproces,
+                        List_Proceso.ElementAt(i).TiempoServico,
+                        List_Proceso.ElementAt(i).TipoMoneda,
+                        count20.ToString(),
+                        "Eliminado: "+List_Proceso.ElementAt(i).Tiempo_de_esp
+                        );
+                    List_Proceso.RemoveAt(i);
+                }
+                
+            }
 
 
 
-            ///// Drawing   /////
+                //end wait procesor
 
-            if (List_Proceso.Count >= 1) 
-                textBox1.Text = List_Proceso.ElementAt(0).TipoMoneda; 
-            else textBox1.Text = "Vacia";
+
+
+
+
+
+                ///// Drawing   /////
+
+                if (List_Proceso.Count >= 1)
+                    textBox1.Text = List_Proceso.ElementAt(0).TipoMoneda;
+                else textBox1.Text = "Vacia";
 
             if (List_Proceso.Count >= 2)
                 textBox2.Text = List_Proceso.ElementAt(1).TipoMoneda;
@@ -315,26 +348,29 @@ namespace ProyectoThreadTest
         
         private void llenarLista()
         {
-            int i;
+            
             int Tipo;
             Proceso temp;
 
             Random rand = new Random();
 
-            for (i = 1; i <= NumOfProces; i++)
+            for (int x=0 ; x < NumOfProces; x++)
             {//aqui relleno monedas
 
 
 
-                
+                id++;
                 Tipo = rand.Next(1, 10);
 
                 temp = new Proceso();
 
-                temp.IDproces = i;
-                temp.TiempoServico = rand.Next(5, 10); // This change the Service time
+                temp.IDproces = id;
+                temp.TiempoServico = rand.Next(5, 30); // This change the Service time
                 temp.prioridad = rand.Next(0, 3);
                 temp.TiempoRestante = temp.TiempoServico;
+
+                temp.Timepo_esp_MAX = rand.Next(10, 20);
+                temp.Tiempo_de_esp = 0;
 
 
                 switch (Tipo)
@@ -394,7 +430,7 @@ namespace ProyectoThreadTest
         private int FindShortestTime()
         {
             /**return the interger position of the List_Proceso*/
-            int i=-1,result;
+            int i=-1;
             int menorTiempo = 0;
             bool foundit=false;
 
@@ -427,7 +463,7 @@ namespace ProyectoThreadTest
         private int FindPriority()
         {
             /**return the interger position of the List_Proceso*/
-            int i = -1, result;
+            int i = -1;
             int prioridad = 0;
             bool foundit = false;
 
